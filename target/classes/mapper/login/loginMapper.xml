@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.shopping.loginMapper">
+
+    <select id="selectUserInfo" resultType="com.shopping.login.SmUserVO" parameterType="com.shopping.login.SmUserVO">
+        SELECT
+            *
+        FROM
+            user
+        WHERE
+        	id = #{id} AND pw = #{pw}
+    </select>
+    
+    <insert id="insertUserInfo" parameterType="com.shopping.login.SmUserVO">
+        INSERT INTO user(name, id, pw, email, rrn) values(#{name}, #{id}, #{pw}, #{email}, #{rrn});
+    </insert>
+    
+    <select id="selectId" resultType="string" parameterType="com.shopping.login.SmUserVO">
+        SELECT
+            id
+        FROM
+            user
+        WHERE
+        	id = #{id}
+    </select>
+    
+</mapper>

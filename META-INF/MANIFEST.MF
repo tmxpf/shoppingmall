@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: ShoppingMall
+Bundle-SymbolicName: ShoppingMall
+Bundle-Version: 1.0.0.qualifier
+Export-Package: com.shopping.ex,
+ com.shopping.login,
+ com.shopping.signup
