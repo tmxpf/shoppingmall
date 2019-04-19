@@ -1,6 +1,7 @@
 package com.shopping.manclothes;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,7 @@ public class SmProductServiceImpl implements SmProductService{
 	private SmProductDAO smProductDAO;
 
 	@Override
-	public ArrayList<ProductVO> getProductList() {
+	public List<ProductVO> getProductList() {
 		return smProductDAO.selectProdutList();
 	}
 	

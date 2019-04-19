@@ -1,6 +1,6 @@
 package com.shopping.manclothes;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,13 +12,11 @@ public class SmProductDAOImpl implements SmProductDAO{
 	@Autowired
 	private SqlSession sqlSession;
 	
-	private static final String Namespace = "com.shopping.loginMapper";
+	private static final String Namespace = "boardMapper";
 	
 	@Override
-	public ArrayList<ProductVO> selectProdutList() {
-		/*return sqlSession.selectList(Namespace + "");*/
-		ArrayList<ProductVO> test = new ArrayList<ProductVO>();
-		return test;
+	public List<ProductVO> selectProdutList() {
+		return sqlSession.selectList(Namespace + ".selectProductList");
 	}
 
 }

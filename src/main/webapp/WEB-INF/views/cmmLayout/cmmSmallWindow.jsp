@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -54,26 +55,29 @@
 	</div>
 	<hr/>
 	<div class="table-responsive">
-		<table class="table table-bordered">
-			<th>상품이름</th>
-			<th>상품 사이즈</th>
-			<th>상품 컬러</th>
-			<th>상품 가격</th>
-			<th>상품 수량</th>
-			<tr><!-- 첫번째 줄 시작 -->
-			    <td>첫번째 칸</td>
-			    <td>두번째 칸</td>
-			    <td>세번째 칸</td>
-			    <td>네번째 칸</td>
-			    <td>다섯번째 칸</td>
-			</tr><!-- 첫번째 줄 끝 -->
-			<tr><!-- 두번째 줄 시작 -->
-			    <td>첫번째 칸</td>
-			    <td>두번째 칸</td>
-			    <td>세번째 칸</td>
-			    <td>네번째 칸</td>
-			    <td>다섯번째 칸</td>
-			</tr><!-- 두번째 줄 끝 -->
+		<table border="1" class="table table-bordered">
+		<thead>
+            <tr>
+                <th scope="col" nowrap="nowrap">상품명</th>
+                <th scope="col" nowrap="nowrap">사이즈</th>
+                <th scope="col" nowrap="nowrap">색상</th>
+                <th scope="col" nowrap="nowrap">가격</th>
+                <th scope="col" nowrap="nowrap">수량</th>
+                <th scope="col" nowrap="nowrap">선택</th>
+            </tr>
+        </thead>
+        <tbody>
+        	<c:forEach var="row_data" items="${list}">
+			<tr>
+			    <td>${row_data.objName}</td>
+			    <td>${row_data.objSize}</td>
+			    <td>${row_data.objColor}</td>
+			    <td>${row_data.objPrice}</td>
+			    <td>${row_data.objAmount}</td>
+			    <td><input class="btn btn-success" type="button" value="선택"/></td>
+			</tr>
+			</c:forEach>
+		</tbody>
 		</table>
 	</div>
 </div>

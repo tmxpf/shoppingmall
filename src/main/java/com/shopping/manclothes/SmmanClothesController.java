@@ -1,6 +1,7 @@
 package com.shopping.manclothes;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -42,7 +43,9 @@ public class SmmanClothesController {
 	@RequestMapping(value="/manclothes/objectRegister.do")
 	public String objectRegister(@ModelAttribute ProductVO productVO, Model model, HttpServletRequest request, HttpServletResponse response) {
 		
-		ArrayList<ProductVO> voList = smProductService.getProductList();
+		List<ProductVO> voList = smProductService.getProductList();
+		
+		model.addAttribute("list", voList);
 		
 		return "cmmLayout/cmmSmallWindow";
 	}

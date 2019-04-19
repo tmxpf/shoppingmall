@@ -1,9 +1,10 @@
 package com.shopping.manclothes;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public interface SmProductDAO {
 
-	public ArrayList<ProductVO> selectProdutList();
+	public List<ProductVO> selectProdutList();
 	
 }
