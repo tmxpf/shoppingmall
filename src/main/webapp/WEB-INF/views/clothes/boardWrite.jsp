@@ -42,7 +42,7 @@
       <div class="container">
 <table class="table table-bordered">
     <tbody>
-        <form action="/manclothes/insertGallery.do" method="post" encType="multiplart/form-data">
+        <form action="/manclothes/insertGallery.do" method="post" encType="multipart/form-data">
         	<input type="hidden" name="img_size"/>
         	<input type="hidden" name="img_name"/>
         	<input type="hidden" name="img_type"/>
@@ -146,7 +146,10 @@ $('input[name=upload]').on("change" ,function() {
 });
 
 function sendData() {
-	var clssId = jQuery('#clss_id').val();
+	
+	window.open("/manclothes/objectRegister.do", "물품 등록", "width=700, height=640" );
+	
+	/* var clssId = jQuery('#clss_id').val();
 	var checkValArray = new Array();
 	var i=0;
 	
@@ -161,7 +164,7 @@ function sendData() {
 		window.open('editServiceForm.do?contents_id='+checkValArray+'&clss_id='+clssId, 'popupEditService' , 'width=500,height=640,scrollbars=no');
 	} else {
 		alert("변경할 콘텐츠를 선택해주세요.");
-	}
+	} */
 }
 
 </script>

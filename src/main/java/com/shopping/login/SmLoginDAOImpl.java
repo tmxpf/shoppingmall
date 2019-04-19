@@ -15,7 +15,8 @@ public class SmLoginDAOImpl implements SmLoginDAO{
 	@Autowired
 	private SqlSession sqlSession;
 	
-	private static final String Namespace = "com.shopping.loginMapper";
+	private static final String Namespace = "loginMapper";
+	/*private static final String Namespace = "mapper.login.loginMapper";*/
 	
 	@Override
 	public SmUserVO getUserInfo(SmUserVO userVO) {

@@ -17,6 +17,7 @@ create table product(
     obj_size varchar(10),
     obj_color varchar(50),
     obj_amount int,
+    obj_price varchar(100),
     usercode int NOT NULL
 );
 
@@ -26,6 +27,7 @@ create table board_manager(
 );
 
 create table shoppingmall.user(
+	usercode int auto_increment primary key,
 	name varchar(50) NOT NULL,
     id	 varchar(50) NOT NULL,
     pw   varchar(200) NOT NULL,
