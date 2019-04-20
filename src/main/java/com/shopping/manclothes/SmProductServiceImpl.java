@@ -2,6 +2,7 @@ package com.shopping.manclothes;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,8 +14,18 @@ public class SmProductServiceImpl implements SmProductService{
 	private SmProductDAO smProductDAO;
 
 	@Override
-	public List<ProductVO> getProductList() {
-		return smProductDAO.selectProdutList();
+	public List<ProductVO> getProductList(Map<String,Object> boardInfo) {
+		return smProductDAO.selectProdutList(boardInfo);
+	}
+
+	@Override
+	public int getProducListCnt() {
+		return smProductDAO.selectProdutListCnt();
+	}
+
+	@Override
+	public ProductVO getProduct(ProductVO vo) {
+		return smProductDAO.selectProduct(vo);
 	}
 	
 }

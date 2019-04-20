@@ -34,51 +34,30 @@
 <body>
 
 <div class="small-window">
-	<div class="row">
-		<div class="dropdown col-sm-4 mb-3 mb-sm-0">
-           <select class="form-control">
-           	  <option>1</option>
-			  <option>2</option>
-			  <option>3</option>
-			  <option>4</option>
-			  <option>5</option>
-           </select>
-         </div>
-         <div class="input-group col-sm-8">
-            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-            <div class="input-group-append">
-	            <button class="btn btn-primary" type="button">
-	                <i class="fas fa-search fa-sm"></i>
-	            </button>
-            </div>
-         </div>
-	</div>
+	<form id="frm" method="post">
+		<input type="hidden" value="${pagination.curPage}"/>
+		<div class="row">
+			<div class="dropdown col-sm-4 mb-3 mb-sm-0">
+	           <select class="form-control" name="searchOption">
+	           	  <option value="1">상품명</option>
+				  <option value="2">사이즈</option>
+				  <option value="3">수량</option>
+	           </select>
+	         </div>
+	         <div class="input-group col-sm-8">
+	            <input type="text" name="search" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+	            <div class="input-group-append">
+		            <button class="btn btn-primary" type="button" onclick="objSubmit();">
+		                <i class="fas fa-search fa-sm"></i>
+		            </button>
+	            </div>
+	         </div>
+		</div>
+	</form>
 	<hr/>
+	
 	<div class="table-responsive">
-		<table border="1" class="table table-bordered">
-		<thead>
-            <tr>
-                <th scope="col" nowrap="nowrap">상품명</th>
-                <th scope="col" nowrap="nowrap">사이즈</th>
-                <th scope="col" nowrap="nowrap">색상</th>
-                <th scope="col" nowrap="nowrap">가격</th>
-                <th scope="col" nowrap="nowrap">수량</th>
-                <th scope="col" nowrap="nowrap">선택</th>
-            </tr>
-        </thead>
-        <tbody>
-        	<c:forEach var="row_data" items="${list}">
-			<tr>
-			    <td>${row_data.objName}</td>
-			    <td>${row_data.objSize}</td>
-			    <td>${row_data.objColor}</td>
-			    <td>${row_data.objPrice}</td>
-			    <td>${row_data.objAmount}</td>
-			    <td><input class="btn btn-success" type="button" value="선택"/></td>
-			</tr>
-			</c:forEach>
-		</tbody>
-		</table>
+		
 	</div>
 </div>
 
@@ -91,6 +70,82 @@
 
 <!-- Custom scripts for all pages-->
 <script src="/resources/js/sb-admin-2.min.js"></script>
+
+<script>
+var curPage = 1;
+
+
+$(document).ready(function() {
+	ajaxBoardList(curPage);
+});
+
+function ajaxBoardList(curPage, searchIdx) {
+	
+	/* var param = {
+			url : "/manclothes/ajaxselectBoardList.do?curPage=" + curPage,
+			dataType : "html",
+			type : "post",
+			success : function(result) {
+		        $(".table-responsive").html(result);
+		    }
+	}
+	
+	if(searchIdx === true)
+		param.data = $('#frm').serialize();
+	
+	$.ajax(param); */
+	
+	$.ajax({
+	    url : "/manclothes/ajaxselectBoardList.do?curPage=" + curPage,
+	    dataType : "html",
+	    type : "post", 
+	    data : (searchIdx === true)	? $('#frm').serialize() : "",
+	    success : function(result) {
+	        $(".table-responsive").html(result);
+	    }
+	});
+}
+
+function fn_paging(curPage) {
+	ajaxBoardList(curPage);
+}
+
+function selectProduct(event) {
+	var product_uuid = event.target.dataset.obj;
+	var con_test = confirm("선택한 상품을 등록하시겠습니까?");
+	
+	if(con_test === true) {
+		
+		$.ajax({
+		    url : "/manclothes/insertProductInfo.do",
+		    dataType : "json",
+		    type : "post",
+		    data : {"objUuid" : product_uuid},
+		    success : function(result) {
+		    	var product =  opener.document.getElementById("product");
+		    	
+		    	product.innerHTML += '<hr/>';
+		    	product.innerHTML += '<sapn>상품명 :' + result.objName + '</sapn>';
+		    	product.innerHTML += '<sapn>사이즈 :' + result.objSize + '</sapn>';
+		    	product.innerHTML += '<sapn>색상 :' + result.objColor + '</sapn>';
+		    	product.innerHTML += '<sapn>가격 :' + result.objPrice + '</sapn>';
+		    	window.close();
+		    }
+		});
+		/* window.close(); */
+	}
+	else {
+		return;
+	}
+}
+
+function objSubmit() {
+	var searchIdx = true;
+	
+	ajaxBoardList(curPage, searchIdx);
+}
+
+</script>
 
 </body>
 </html>

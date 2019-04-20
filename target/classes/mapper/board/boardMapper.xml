@@ -13,8 +13,21 @@
 		<result property="userCode" column="usercode"/>
 	</resultMap>
 	
-    <select id="selectProductList" parameterType="com.shopping.manclothes.ProductVO" resultMap="Product">
-        SELECT * FROM product
+    <select id="selectProductList" parameterType="map" resultMap="Product">
+        SELECT * FROM product limit #{startIndex}, #{pageSize}
+        <if test="keyword != null">
+        	AND KEYWORD LIKE #{keyword}
+    	</if>
+    </select>
+    
+    <select id="selectProductListCnt" resultType="int">
+        SELECT count(*) FROM product
+    </select>
+    
+    <select id="selectProduct" parameterType="com.shopping.manclothes.ProductVO" resultMap="Product">
+    <![CDATA[
+        SELECT * FROM product WHERE obj_uuid = #{objUuid}
+    ]]>
     </select>
     
 </mapper>

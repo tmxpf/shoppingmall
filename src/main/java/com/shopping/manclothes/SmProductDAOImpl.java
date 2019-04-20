@@ -1,6 +1,7 @@
 package com.shopping.manclothes;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,18 @@ public class SmProductDAOImpl implements SmProductDAO{
 	private static final String Namespace = "boardMapper";
 	
 	@Override
-	public List<ProductVO> selectProdutList() {
-		return sqlSession.selectList(Namespace + ".selectProductList");
+	public List<ProductVO> selectProdutList(Map<String,Object> boardInfo) {
+		return sqlSession.selectList(Namespace + ".selectProductList", boardInfo);
+	}
+
+	@Override
+	public int selectProdutListCnt() {
+		return sqlSession.selectOne(Namespace + ".selectProductListCnt");
+	}
+
+	@Override
+	public ProductVO selectProduct(ProductVO vo) {
+		return sqlSession.selectOne(Namespace + ".selectProduct", vo);
 	}
 
 }

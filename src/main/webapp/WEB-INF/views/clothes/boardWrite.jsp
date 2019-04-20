@@ -68,6 +68,9 @@
                 <td>
                 	<!-- <input type="text" placeholder="파일을 선택하세요. " name="filename" class="form-control"/> -->
                 	<input type="button" value="물품등록" onclick="sendData();" class="pull-right bg-gradient-success"/>
+                	<div id="product">
+                	
+                	</div>
                 </td>
             </tr>
             <tr>

@@ -1,7 +1,9 @@
 package com.shopping.manclothes;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,8 +16,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.shopping.cmm.Pagination;
 import com.shopping.login.SmUserVO;
 
 @Controller
@@ -42,11 +46,45 @@ public class SmmanClothesController {
 	
 	@RequestMapping(value="/manclothes/objectRegister.do")
 	public String objectRegister(@ModelAttribute ProductVO productVO, Model model, HttpServletRequest request, HttpServletResponse response) {
-		
-		List<ProductVO> voList = smProductService.getProductList();
-		
-		model.addAttribute("list", voList);
-		
 		return "cmmLayout/cmmSmallWindow";
+	}
+	
+	@RequestMapping(value="/manclothes/ajaxselectBoardList.do")
+	public String ajaxselectBoardList(@ModelAttribute ProductVO productVO, Model model, HttpServletRequest request, HttpServletResponse response,
+			@RequestParam(defaultValue="1") int curPage,
+			@RequestParam(defaultValue="0") int searchOption,
+			@RequestParam(defaultValue="0") String search) {
+		
+		/*리스트 전체 개수*/
+		int listCnt = smProductService.getProducListCnt();
+		
+		Pagination pagination = new Pagination(listCnt, curPage);
+		
+		Map<String, Object> boardInfo = new HashMap<String, Object>();
+		boardInfo.put("startIndex", pagination.getStartIndex());
+		boardInfo.put("pageSize", pagination.getPageSize());
+		/*boardInfo.put("searchOption", searchOption);
+		boardInfo.put("search", search);*/
+		
+		List<ProductVO> List = smProductService.getProductList(boardInfo);
+		
+		model.addAttribute("list", List);
+		model.addAttribute("pagination", pagination);
+		
+		return "clothes/manProduct";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/manclothes/insertProductInfo.do")
+	public Map<String,Object> insertProductInfo(@ModelAttribute ProductVO productVO, Model model, HttpServletRequest request, HttpServletResponse response) {
+		
+		ProductVO vo = smProductService.getProduct(productVO);
+		Map<String,Object> map = new HashMap<String, Object>();
+		map.put("objName", vo.getObjName());
+		map.put("objSize", vo.getObjSize());
+		map.put("objColor", vo.getObjColor());
+		map.put("objPrice", vo.getObjPrice());
+		
+		return map;
 	}
 }
