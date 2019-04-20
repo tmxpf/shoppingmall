@@ -10,35 +10,56 @@ public class ProductBoardVO implements Serializable{
 	private static final long serialVersionUID = -4622495557586828748L;
 
 	/*남성의류 or 여성의류 구분*/
-	private int board_manager_seq;
+	private int board_manager_seq = 0;
 	
-	/*상품 고유번호*/
-	private int board_seq;
+	/*게시물 고유번호*/
+	private int board_seq = 0;
 	
 	/*게시물 제목*/
-	private String board_title;
+	private String board_title = "";
 	
 	/*게시물 내용*/
-	private String board_content;
+	private String board_content = "";
 	
 	/*이미지 경로*/
-	private String img_path;
+	private String img_path = "";
 	
 	/*이미지 제목*/
-	private String img_name;
+	private String img_name = "";
 	
 	/*이미지 사이즈*/
-	private int img_size;
+	private int img_size = 0;
 	
 	/*이미지 타입*/
-	private String img_type;
+	private String img_type = "";
+
+	
+	
 	
 	/*상품 고유번호*/
-	private String obj_uuid;
+	private String objUuid = "";
 	
-	/*게시물 작성자 고유번호*/
-	private String user_id;
-
+	/*상품 이름*/
+	private String objName = "";
+	
+	/*상품 사이즈*/
+	private String objSize = "";
+	
+	/*상품 컬러*/
+	private String objColor = "";
+	
+	/*상품 양*/
+	private int objAmount = 0;
+	
+	/*상품 가격*/
+	private String objPrice = "";
+	
+	/*사용자 고유번호*/
+	private int userCode = 0;
+	
+	
+	
+	
 	public int getBoard_manager_seq() {
 		return board_manager_seq;
 	}
@@ -103,20 +124,60 @@ public class ProductBoardVO implements Serializable{
 		this.img_type = img_type;
 	}
 
-	public String getObj_uuid() {
-		return obj_uuid;
+	public String getObjUuid() {
+		return objUuid;
 	}
 
-	public void setObj_uuid(String obj_uuid) {
-		this.obj_uuid = obj_uuid;
+	public void setObjUuid(String objUuid) {
+		this.objUuid = objUuid;
 	}
 
-	public String getUser_id() {
-		return user_id;
+	public String getObjName() {
+		return objName;
 	}
 
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
+	public void setObjName(String objName) {
+		this.objName = objName;
+	}
+
+	public String getObjSize() {
+		return objSize;
+	}
+
+	public void setObjSize(String objSize) {
+		this.objSize = objSize;
+	}
+
+	public String getObjColor() {
+		return objColor;
+	}
+
+	public void setObjColor(String objColor) {
+		this.objColor = objColor;
+	}
+
+	public int getObjAmount() {
+		return objAmount;
+	}
+
+	public void setObjAmount(int objAmount) {
+		this.objAmount = objAmount;
+	}
+
+	public String getObjPrice() {
+		return objPrice;
+	}
+
+	public void setObjPrice(String objPrice) {
+		this.objPrice = objPrice;
+	}
+
+	public int getUserCode() {
+		return userCode;
+	}
+
+	public void setUserCode(int userCode) {
+		this.userCode = userCode;
 	}
 	
 }

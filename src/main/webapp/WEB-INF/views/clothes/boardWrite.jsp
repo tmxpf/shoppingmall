@@ -46,6 +46,15 @@
         	<input type="hidden" name="img_size"/>
         	<input type="hidden" name="img_name"/>
         	<input type="hidden" name="img_type"/>
+        	
+        	<!-- <input type="hidden" name="objUuid"/>
+        	<input type="hidden" name="objName"/>
+        	<input type="hidden" name="objSize"/>
+        	<input type="hidden" name="objColor"/>
+        	<input type="hidden" name="objPrice"/>
+        	<input type="hidden" name="objAmount"/>
+        	<input type="hidden" name="userCode"/> -->
+        	
             <tr>
                 <th>제목 </th>
                 <td><input type="text" placeholder="제목을 입력하세요. " name="board_title" class="form-control"/></td>

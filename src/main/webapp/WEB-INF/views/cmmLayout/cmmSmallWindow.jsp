@@ -127,19 +127,31 @@ function selectProduct(event) {
 		    	//물품등록 버튼 비활성화
 		    	opener.document.getElementById("register").disabled = 'disabled';
 		    	
+		    	//물품정보 hidden저장
+		    	/* opener.document.getElementsByName("objUuid").value = result.objUuid;
+		    	opener.document.getElementsByName("objName").value = result.objName;
+		    	opener.document.getElementsByName("objSize").value = result.objSize;
+		    	opener.document.getElementsByName("objColor").value = result.objColor;
+		    	opener.document.getElementsByName("objPrice").value = result.objPrice;
+		    	opener.document.getElementsByName("objAmount").value = parseInt(result.objAmount);
+		    	opener.document.getElementsByName("userCode").value = parseInt(result.userCode); */
+		    	
 		    	//물품정도 SHOW
 		    	product.innerHTML += '<hr/>';
 		    	product.innerHTML += '<sapn>상품명 :' + result.objName + '</sapn>&nbsp; &nbsp;';
 		    	product.innerHTML += '<sapn>사이즈 :' + result.objSize + '</sapn>&nbsp; &nbsp;';
 		    	product.innerHTML += '<sapn>색상 :' + result.objColor + '</sapn>&nbsp; &nbsp;';
-		    	product.innerHTML += '<sapn>가격 :' + result.objPrice + '</sapn>&nbsp;';
+		    	product.innerHTML += '<sapn>가격 :' + result.objPrice + '</sapn>&nbsp; &nbsp;';
+		    	product.innerHTML += '<sapn>수량 :' + result.objAmount + '</sapn>&nbsp;';
 		    	
 		    	//물품정보 hidden저장
-		    	product.innerHTML += "<input type='hidden' name='objUuid' value=" + result.objUuid + "/>";
-		    	product.innerHTML += "<input type='hidden' name='objName' value=" + result.objName + "/>";
-		    	product.innerHTML += "<input type='hidden' name='objSize' value=" + result.objSize + "/>";
-		    	product.innerHTML += "<input type='hidden' name='objColor' value=" + result.objColor + "/>";
-		    	product.innerHTML += "<input type='hidden' name='objPrice' value=" + result.objPrice + "/>";
+		    	product.innerHTML += "<input type='hidden' name='objUuid' value=" + result.objUuid + "></input>";
+		    	product.innerHTML += "<input type='hidden' name='objName' value=" + result.objName + "></input>";
+		    	product.innerHTML += "<input type='hidden' name='objSize' value=" + result.objSize + "></input>";
+		    	product.innerHTML += "<input type='hidden' name='objColor' value=" + result.objColor + "></input>";
+		    	product.innerHTML += "<input type='hidden' name='objPrice' value=" + result.objPrice + "></input>";
+		    	product.innerHTML += "<input type='hidden' name='objAmount' value=" + result.objAmount + "></input>";
+		    	product.innerHTML += "<input type='hidden' name='userCode' value=" + result.userCode + "></input>";
 		    	
 		    	//물품정보 삭제버튼 생성
 		    	product.innerHTML += '<input type="button" value="삭제" onclick="deleteProduct();" class="pull-right bg-gradient-danger"/>';
