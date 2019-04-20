@@ -66,8 +66,7 @@
             <tr>
                 <th>물품 등록 </th>
                 <td>
-                	<!-- <input type="text" placeholder="파일을 선택하세요. " name="filename" class="form-control"/> -->
-                	<input type="button" value="물품등록" onclick="sendData();" class="pull-right bg-gradient-success"/>
+                	<input type="button" id="register" value="물품등록" onclick="sendData();" class="pull-right bg-gradient-success"/>
                 	<div id="product">
                 	
                 	</div>
@@ -149,25 +148,14 @@ $('input[name=upload]').on("change" ,function() {
 });
 
 function sendData() {
-	
 	window.open("/manclothes/objectRegister.do", "물품 등록", "width=700, height=640" );
+}
+
+function deleteProduct() {
+	$('#product').empty();
 	
-	/* var clssId = jQuery('#clss_id').val();
-	var checkValArray = new Array();
-	var i=0;
-	
-	jQuery('[name=checkContentsId]').each(function(){
-		if(jQuery(this).is(':checked')){
-			checkValArray[i] = jQuery(this).val();
-			i++;
-		}
-	});
-	
-	if(i>0){
-		window.open('editServiceForm.do?contents_id='+checkValArray+'&clss_id='+clssId, 'popupEditService' , 'width=500,height=640,scrollbars=no');
-	} else {
-		alert("변경할 콘텐츠를 선택해주세요.");
-	} */
+	//물품등록 버튼 활성화
+	document.getElementById("register").disabled = '';
 }
 
 </script>

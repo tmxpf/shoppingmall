@@ -76,15 +76,10 @@ public class SmmanClothesController {
 	
 	@ResponseBody
 	@RequestMapping(value="/manclothes/insertProductInfo.do")
-	public Map<String,Object> insertProductInfo(@ModelAttribute ProductVO productVO, Model model, HttpServletRequest request, HttpServletResponse response) {
+	public ProductVO insertProductInfo(@ModelAttribute ProductVO productVO, Model model, HttpServletRequest request, HttpServletResponse response) {
 		
 		ProductVO vo = smProductService.getProduct(productVO);
-		Map<String,Object> map = new HashMap<String, Object>();
-		map.put("objName", vo.getObjName());
-		map.put("objSize", vo.getObjSize());
-		map.put("objColor", vo.getObjColor());
-		map.put("objPrice", vo.getObjPrice());
 		
-		return map;
+		return vo;
 	}
 }

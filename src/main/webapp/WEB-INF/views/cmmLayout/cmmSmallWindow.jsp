@@ -124,11 +124,26 @@ function selectProduct(event) {
 		    success : function(result) {
 		    	var product =  opener.document.getElementById("product");
 		    	
+		    	//물품등록 버튼 비활성화
+		    	opener.document.getElementById("register").disabled = 'disabled';
+		    	
+		    	//물품정도 SHOW
 		    	product.innerHTML += '<hr/>';
-		    	product.innerHTML += '<sapn>상품명 :' + result.objName + '</sapn>';
-		    	product.innerHTML += '<sapn>사이즈 :' + result.objSize + '</sapn>';
-		    	product.innerHTML += '<sapn>색상 :' + result.objColor + '</sapn>';
-		    	product.innerHTML += '<sapn>가격 :' + result.objPrice + '</sapn>';
+		    	product.innerHTML += '<sapn>상품명 :' + result.objName + '</sapn>&nbsp; &nbsp;';
+		    	product.innerHTML += '<sapn>사이즈 :' + result.objSize + '</sapn>&nbsp; &nbsp;';
+		    	product.innerHTML += '<sapn>색상 :' + result.objColor + '</sapn>&nbsp; &nbsp;';
+		    	product.innerHTML += '<sapn>가격 :' + result.objPrice + '</sapn>&nbsp;';
+		    	
+		    	//물품정보 hidden저장
+		    	product.innerHTML += "<input type='hidden' name='objUuid' value=" + result.objUuid + "/>";
+		    	product.innerHTML += "<input type='hidden' name='objName' value=" + result.objName + "/>";
+		    	product.innerHTML += "<input type='hidden' name='objSize' value=" + result.objSize + "/>";
+		    	product.innerHTML += "<input type='hidden' name='objColor' value=" + result.objColor + "/>";
+		    	product.innerHTML += "<input type='hidden' name='objPrice' value=" + result.objPrice + "/>";
+		    	
+		    	//물품정보 삭제버튼 생성
+		    	product.innerHTML += '<input type="button" value="삭제" onclick="deleteProduct();" class="pull-right bg-gradient-danger"/>';
+		    	
 		    	window.close();
 		    }
 		});
