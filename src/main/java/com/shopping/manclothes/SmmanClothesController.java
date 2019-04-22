@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,8 +34,7 @@ public class SmmanClothesController {
 	}
 
 	@RequestMapping(value="/manclothes/insertGallery.do")
-	public String insertGallery(@ModelAttribute ProductBoardVO productBoardVO, Model model, HttpServletRequest request, HttpServletResponse response, 
-			HttpSession session,
+	public String insertGallery(@ModelAttribute ProductBoardVO productBoardVO, Model model, HttpServletRequest request, HttpServletResponse response,
 			@RequestParam("upload") MultipartFile file) {
 		
 		UUID uuid = UUID.randomUUID();
@@ -51,8 +51,8 @@ public class SmmanClothesController {
 	@RequestMapping(value="/manclothes/ajaxselectBoardList.do")
 	public String ajaxselectBoardList(@ModelAttribute ProductVO productVO, Model model, HttpServletRequest request, HttpServletResponse response,
 			@RequestParam(defaultValue="1") int curPage,
-			@RequestParam(defaultValue="0") int searchOption,
-			@RequestParam(defaultValue="0") String search) {
+			@RequestParam("searchOption") int searchOption,
+			@RequestParam("search") String search) {
 		
 		/*리스트 전체 개수*/
 		int listCnt = smProductService.getProducListCnt();

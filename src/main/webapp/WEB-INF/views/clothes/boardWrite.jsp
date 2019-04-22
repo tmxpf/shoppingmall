@@ -39,57 +39,59 @@
 
        <!-- /////////////////////////////////////////////// -->
       
-      <div class="container">
-<table class="table table-bordered">
-    <tbody>
-        <form action="/manclothes/insertGallery.do" method="post" encType="multipart/form-data">
-        	<input type="hidden" name="img_size"/>
-        	<input type="hidden" name="img_name"/>
-        	<input type="hidden" name="img_type"/>
-        	
-        	<!-- <input type="hidden" name="objUuid"/>
-        	<input type="hidden" name="objName"/>
-        	<input type="hidden" name="objSize"/>
-        	<input type="hidden" name="objColor"/>
-        	<input type="hidden" name="objPrice"/>
-        	<input type="hidden" name="objAmount"/>
-        	<input type="hidden" name="userCode"/> -->
-        	
-            <tr>
-                <th>제목 </th>
-                <td><input type="text" placeholder="제목을 입력하세요. " name="board_title" class="form-control"/></td>
-            </tr>
-            <tr>
-                <th>내용 </th>
-                <td><textarea cols="10" rows="10" placeholder="내용을 입력하세요. " name="board_content" class="form-control"></textarea></td>
-            </tr>
-            <tr>
-                <th>이미지 등록 </th>
-                <td>
-                	<input type="file" name="upload" class="file" />
-                	<div id="image_section">
-
-                	</div>
-                </td>
-            </tr>
-            <tr>
-                <th>물품 등록 </th>
-                <td>
-                	<input type="button" id="register" value="물품등록" onclick="sendData();" class="pull-right bg-gradient-success"/>
-                	<div id="product">
-                	
-                	</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <input type="submit" value="등록" class="pull-right bg-gradient-success"/>
-                    <input type="button" value="취소" class="pull-right bg-gradient-danger" onclick="javascript:location.href='/clothes/manClothes.do'"/>
-                </td>
-            </tr>
-        </form>
-    </tbody>
-</table>
+<div class="container">
+	<table class="table table-bordered">
+    	<tbody>
+    		<form action="/manclothes/insertGallery.do" method="post" enctype="multipart/form-data">
+	            <tr>
+	                <th>제목 </th>
+	                <td><input type="text" placeholder="제목을 입력하세요. " name="board_title" class="form-control"/></td>
+	            </tr>
+	            <tr>
+	                <th>내용 </th>
+	                <td><textarea cols="10" rows="10" placeholder="내용을 입력하세요. " name="board_content" class="form-control"></textarea></td>
+	            </tr>
+	            <tr>
+	                <th>이미지 등록 </th>
+	                <td>
+	                	<input type="file" name="upload" class="file" accept="image/*"/>
+	                	<div id="image_section">
+	
+	                	</div>
+	                	<div style="display:none">
+				        	<input type="text" name="img_size" value="0"/>
+						    <input type="text" name="img_name"/>
+						    <input type="text" name="img_type"/>
+	        			</div>
+	                </td>
+	            </tr>
+	            <tr>
+	                <th>물품 등록 </th>
+	                <td>
+	                	<input type="button" id="register" value="물품등록" onclick="sendData();" class="pull-right bg-gradient-success"/>
+	                	<div id="product">
+	                	
+	                	</div>
+	                	<div id="productInfo" style="display:none">
+	                		<input type="text" name="objUuid"/>
+				        	<input type="text" name="objName"/>
+				        	<input type="text" name="objSize"/>
+				        	<input type="text" name="objColor"/>
+				        	<input type="text" name="objPrice"/>
+				        	<input type="text" name="objAmount" value="0"/>
+				        	<input type="text" name="userCode" value="0"/>
+	                	</div>
+	                </td>
+	            </tr>
+	            <tr>
+	                <td colspan="2">
+	                    <input type="submit" value="등록" class="pull-right bg-gradient-success"/>
+	                    <input type="button" value="취소" class="pull-right bg-gradient-danger" onclick="javascript:location.href='/clothes/manClothes.do'"/>
+	                </td>
+	            </tr>
+	        </form>
+	    </tbody>
+	</table>
 </div>
       
        <!-- //////////////////////////////////////////////// -->
@@ -128,7 +130,7 @@ $('input[name=upload]').on("change" ,function() {
 	var imgObj = this.files[0];
 	var extension = ['gif', 'jpeg', 'jpg', 'png'];
 	var typeChk = imgObj.type.split('/')[1];
-	var IMAGE_WIDTH = 560;
+	var IMAGE_WIDTH = 300;
 	
 	typeChk = extension.indexOf(typeChk);
 	

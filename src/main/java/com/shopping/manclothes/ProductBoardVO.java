@@ -10,52 +10,52 @@ public class ProductBoardVO implements Serializable{
 	private static final long serialVersionUID = -4622495557586828748L;
 
 	/*남성의류 or 여성의류 구분*/
-	private int board_manager_seq = 0;
+	private int board_manager_seq;
 	
 	/*게시물 고유번호*/
-	private int board_seq = 0;
+	private int board_seq;
 	
 	/*게시물 제목*/
-	private String board_title = "";
+	private String board_title;
 	
 	/*게시물 내용*/
-	private String board_content = "";
+	private String board_content;
 	
 	/*이미지 경로*/
-	private String img_path = "";
+	private String img_path;
 	
 	/*이미지 제목*/
-	private String img_name = "";
+	private String img_name;
 	
 	/*이미지 사이즈*/
-	private int img_size = 0;
+	private int img_size;
 	
 	/*이미지 타입*/
-	private String img_type = "";
+	private String img_type;
 
 	
 	
 	
 	/*상품 고유번호*/
-	private String objUuid = "";
+	private String objUuid;
 	
 	/*상품 이름*/
-	private String objName = "";
+	private String objName;
 	
 	/*상품 사이즈*/
-	private String objSize = "";
+	private String objSize;
 	
 	/*상품 컬러*/
-	private String objColor = "";
+	private String objColor;
 	
 	/*상품 양*/
-	private int objAmount = 0;
+	private int objAmount;
 	
 	/*상품 가격*/
-	private String objPrice = "";
+	private String objPrice;
 	
 	/*사용자 고유번호*/
-	private int userCode = 0;
+	private int userCode;
 	
 	
 	
