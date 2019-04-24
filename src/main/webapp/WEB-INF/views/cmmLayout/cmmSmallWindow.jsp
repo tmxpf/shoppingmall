@@ -91,9 +91,9 @@ function ajaxBoardList(curPage, dividePage) {
 	}
 	
 	if(dividePage === true)
-		param.data = {"dividePage" : dividePage};
+		param.data = {"dividePage" : dividePage};	//페에지만 넘길 경우
 	else
-		param.data = $('#frm').serialize();
+		param.data = $('#frm').serialize();	//검색 옵션을 주고 이동할 경우
 	
 	$.ajax(param);
 	
