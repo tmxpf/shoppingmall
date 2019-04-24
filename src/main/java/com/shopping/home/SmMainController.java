@@ -18,4 +18,8 @@ public class SmMainController {
 		return "clothes/manClothes";
 	}
 	
+	@RequestMapping(value="/cmm/cmmPlayer.do")
+	public String cmmPlayer(@ModelAttribute SmUserVO userVO, Model model, HttpServletRequest request, HttpServletResponse response) {
+		return "cmmLayout/cmmPlayer";
+	}
 }

@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
@@ -52,10 +54,11 @@
               <!-- Basic Card Example -->
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Basic Card Example</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">소핑몰 홍보 동영상</h6>
                 </div>
                 <div class="card-body">
-                  The styling for this basic card example is created by using default Bootstrap utility classes. By using utility classes, the style of the card component can be easily modified with no need for any custom CSS!
+                  	쇼핑몰 홍보동영상 입니다. 잘 나오는지 확인해봅시다.
+                  	<button class="btn btn-success btn-icon-split" id="remote">동영상 시청</button>
                 </div>
               </div>
 
@@ -104,7 +107,7 @@
             </div>
 
           </div>
-
+          
         </div>
         <!-- /.container-fluid -->
 
@@ -136,6 +139,14 @@
 
 <!-- Custom scripts for all pages-->
 <script src="/resources/js/sb-admin-2.min.js"></script>
+
+<script>
+
+document.getElementById("remote").onclick = function() {
+	window.open("/cmm/cmmPlayer.do", "홍보 동영상", "width=1450, height=850, left=100, top=50");
+}
+
+</script>
 
 </body>
 </html>
