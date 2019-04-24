@@ -69,6 +69,8 @@ public class SmmanClothesController {
 		
 		model.addAttribute("list", List);
 		model.addAttribute("pagination", pagination);
+		model.addAttribute("searchOption", searchOption);
+		model.addAttribute("search", search);
 		
 		return "clothes/manProduct";
 	}

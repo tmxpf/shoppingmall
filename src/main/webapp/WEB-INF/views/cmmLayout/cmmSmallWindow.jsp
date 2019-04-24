@@ -19,8 +19,6 @@
 <!-- Default-page-->
 <link href="/resources/css/default-page.css" rel="stylesheet">
 
-<link type="text/css" rel="stylesheet" href="chrome-extension://eobejphpabbjeehffmbiecckpkggpbai/style.css">
-
 <style>
 .small-window {
 	margin-left : 20px;
@@ -34,6 +32,9 @@
 <body>
 
 <div class="small-window">
+	<input type="hidden" name="searchKwd"/>
+	<input type="hidden" name="optionKwd" value="0"/>
+	
 	<form id="frm" method="post">
 		<%-- <input type="hidden" value="${pagination.curPage}"/> --%>
 		<div class="row">
@@ -73,15 +74,14 @@
 
 <script>
 var curPage = 1;
-var dividePage = true;
 
 $(document).ready(function() {
-	ajaxBoardList(curPage, dividePage);
+	ajaxBoardList(curPage, false);
 });
 
-function ajaxBoardList(curPage, dividePage) {
+function ajaxBoardList(curPage, pageIdx) {
 	
-	var param = {
+	/* var param = {
 			url : "/manclothes/ajaxselectBoardList.do?curPage=" + curPage,
 			dataType : "html",
 			type : "post",
@@ -90,23 +90,44 @@ function ajaxBoardList(curPage, dividePage) {
 		    }
 	}
 	
+<<<<<<< HEAD
 	if(dividePage === true)
 		param.data = {"dividePage" : dividePage};	//페에지만 넘길 경우
 	else
 		param.data = $('#frm').serialize();	//검색 옵션을 주고 이동할 경우
 	
 	$.ajax(param);
+=======
+	if(pageIdx === true) {
+		param.data = $('#frm').serialize();	
+	}
+	else {
+		var data = {
+				"searchOption" : $("input[name='optionKwd']").val(),
+				"search" : $("input[name='searchKwd']").val()
+		}
+		
+		param.data = data;
+	}
+>>>>>>> 6dec0167a9afe33b0d9db78bfd054c9c8fcb5edb
 	
+	$.ajax(param); */
+	 
+	var data = {
+			"searchOption" : $("input[name='optionKwd']").val(),
+			"search" : $("input[name='searchKwd']").val()
+	}
 	
-	/* $.ajax({
+	$.ajax({
 	    url : "/manclothes/ajaxselectBoardList.do?curPage=" + curPage,
 	    dataType : "html",
 	    type : "post", 
-	    data : (searchIdx === true)	? $('#frm').serialize() : {"searchIdx" : false},
+	    /* data : $('#frm').serialize(), */
+	    data : (pageIdx === true) ? $('#frm').serialize() : data,
 	    success : function(result) {
 	        $(".table-responsive").html(result);
 	    }
-	}); */
+	});
 }
 
 function fn_paging(curPage) {
@@ -170,9 +191,13 @@ function selectProduct(event) {
 }
 
 function objSubmit() {
-	dividePage = false;
+	var searchOption = $("select[name='searchOption']").val();
+	var searchText = $("input[name='search']").val();
 	
-	ajaxBoardList(curPage, dividePage);
+	document.getElementsByName("optionKwd")[0].value = searchOption;
+	document.getElementsByName("searchKwd")[0].value = searchText;
+	
+	ajaxBoardList(curPage, true);
 }
 
 </script>
