@@ -80,38 +80,6 @@ $(document).ready(function() {
 });
 
 function ajaxBoardList(curPage, pageIdx) {
-	
-	/* var param = {
-			url : "/manclothes/ajaxselectBoardList.do?curPage=" + curPage,
-			dataType : "html",
-			type : "post",
-			success : function(result) {
-		        $(".table-responsive").html(result);
-		    }
-	}
-	
-<<<<<<< HEAD
-	if(dividePage === true)
-		param.data = {"dividePage" : dividePage};	//페에지만 넘길 경우
-	else
-		param.data = $('#frm').serialize();	//검색 옵션을 주고 이동할 경우
-	
-	$.ajax(param);
-=======
-	if(pageIdx === true) {
-		param.data = $('#frm').serialize();	
-	}
-	else {
-		var data = {
-				"searchOption" : $("input[name='optionKwd']").val(),
-				"search" : $("input[name='searchKwd']").val()
-		}
-		
-		param.data = data;
-	}
->>>>>>> 6dec0167a9afe33b0d9db78bfd054c9c8fcb5edb
-	
-	$.ajax(param); */
 	 
 	var data = {
 			"searchOption" : $("input[name='optionKwd']").val(),
