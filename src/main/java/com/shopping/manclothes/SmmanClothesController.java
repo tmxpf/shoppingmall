@@ -54,16 +54,17 @@ public class SmmanClothesController {
 			@RequestParam("searchOption") int searchOption,
 			@RequestParam("search") String search) {
 		
+		Map<String, Object> boardInfo = new HashMap<String, Object>();
+		boardInfo.put("searchOption", searchOption);
+		boardInfo.put("search", search);
+		
 		/*리스트 전체 개수*/
-		int listCnt = smProductService.getProducListCnt();
+		int listCnt = smProductService.getProducListCnt(boardInfo);
 		
 		Pagination pagination = new Pagination(listCnt, curPage);
 		
-		Map<String, Object> boardInfo = new HashMap<String, Object>();
 		boardInfo.put("startIndex", pagination.getStartIndex());
 		boardInfo.put("pageSize", pagination.getPageSize());
-		/*boardInfo.put("searchOption", searchOption);
-		boardInfo.put("search", search);*/
 		
 		List<ProductVO> List = smProductService.getProductList(boardInfo);
 		

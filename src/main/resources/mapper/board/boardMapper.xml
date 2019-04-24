@@ -14,14 +14,30 @@
 	</resultMap>
 	
     <select id="selectProductList" parameterType="map" resultMap="Product">
-        SELECT * FROM product limit #{startIndex}, #{pageSize}
-        <if test="keyword != null">
-        	AND KEYWORD LIKE #{keyword}
+        SELECT * FROM product
+        <if test="searchOption == 1">
+        	WHERE obj_name LIKE '%${search}%'
     	</if>
+    	<if test="searchOption == 2">
+        	WHERE obj_size LIKE '%${search}%'
+    	</if>
+    	<if test="searchOption == 3">
+        	WHERE obj_amount LIKE '%${search}%'
+    	</if>
+    	limit #{startIndex}, #{pageSize}
     </select>
     
-    <select id="selectProductListCnt" resultType="int">
+    <select id="selectProductListCnt" parameterType="map" resultType="int">
         SELECT count(*) FROM product
+        <if test="searchOption == 1">
+        	WHERE obj_name LIKE '%${search}%'
+    	</if>
+    	<if test="searchOption == 2">
+        	WHERE obj_size LIKE '%${search}%'
+    	</if>
+    	<if test="searchOption == 3">
+        	WHERE obj_amount LIKE '%${search}%'
+    	</if>
     </select>
     
     <select id="selectProduct" parameterType="com.shopping.manclothes.ProductVO" resultMap="Product">

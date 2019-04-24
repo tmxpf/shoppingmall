@@ -8,7 +8,7 @@ public interface SmProductDAO {
 
 	public List<ProductVO> selectProdutList(Map<String,Object> boardInfo);
 	
-	public int selectProdutListCnt();
+	public int selectProdutListCnt(Map<String, Object> boardInfo);
 	
 	public ProductVO selectProduct(ProductVO vo);
 }

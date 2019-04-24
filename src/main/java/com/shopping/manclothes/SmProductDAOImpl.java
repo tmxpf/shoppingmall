@@ -21,8 +21,8 @@ public class SmProductDAOImpl implements SmProductDAO{
 	}
 
 	@Override
-	public int selectProdutListCnt() {
-		return sqlSession.selectOne(Namespace + ".selectProductListCnt");
+	public int selectProdutListCnt(Map<String, Object> boardInfo) {
+		return sqlSession.selectOne(Namespace + ".selectProductListCnt", boardInfo);
 	}
 
 	@Override

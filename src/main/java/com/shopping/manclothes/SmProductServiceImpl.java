@@ -19,8 +19,8 @@ public class SmProductServiceImpl implements SmProductService{
 	}
 
 	@Override
-	public int getProducListCnt() {
-		return smProductDAO.selectProdutListCnt();
+	public int getProducListCnt(Map<String, Object> boardInfo) {
+		return smProductDAO.selectProdutListCnt(boardInfo);
 	}
 
 	@Override

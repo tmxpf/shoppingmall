@@ -8,7 +8,7 @@ public interface SmProductService {
 
 	public List<ProductVO> getProductList(Map<String,Object> boardInfo);
 	
-	public int getProducListCnt();
+	public int getProducListCnt(Map<String, Object> boardInfo);
 	
 	public ProductVO getProduct(ProductVO vo);
 }
