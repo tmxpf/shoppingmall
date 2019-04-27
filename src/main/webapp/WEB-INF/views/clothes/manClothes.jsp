@@ -41,8 +41,25 @@
       <div class="defaul-page">
       <h1 class="h3 mb-2 text-gray-800">남성 의류</h1>
       <p class="mb-4">다양한 남성 의류 판매</p>
-      
+
       <div class="bs-example" id="manClothes">
+	    <div class="row">
+      		<div class="col-xs-6 col-md-3 hovereffect">
+		        <a href="#" class="thumbnail" onClick="modalEvent(event, 1);">
+		          <img src="/mall_img/201932510055216.png" alt="100%x180" data-holder-rendered="true" style="height: 300px; width: 100%; display: block;"/>
+		        </a>
+	      	</div>
+      	</div>
+      	<hr>
+      	<div class="row">
+      		<div class="col-xs-6 col-md-3 hovereffect">
+		        <a href="#" class="thumbnail" onClick="modalEvent(event, 1);">
+		          <img src="/resources/img/clothe_1.jpg" alt="100%x180" data-holder-rendered="true" style="height: 300px; width: 100%; display: block;"/>
+		        </a>
+	      	</div>
+      	</div>
+      </div>
+      <!-- <div class="bs-example" id="manClothes">
 	    <div class="row">
 	      <div class="col-xs-6 col-md-3 hovereffect">
 	        <a href="#" class="thumbnail" onClick="modalEvent(event, 1);">
@@ -88,7 +105,8 @@
 	        </a>
 	      </div>
 	    </div>
-  	  </div>
+  	  </div> -->
+  	  
   	  <hr>
   	  <div class="row">
   	  	<div class="pull-right">

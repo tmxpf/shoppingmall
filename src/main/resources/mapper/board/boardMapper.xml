@@ -46,4 +46,23 @@
     ]]>
     </select>
     
+    <insert id="insertManBoard" parameterType="com.shopping.manclothes.ProductBoardVO">
+
+	insert into product_board(board_manager_seq, board_title, board_content, img_path, img_name, img_size, img_type, usercode, obj_uuid, obj_name, obj_size, obj_color, obj_amount) values(
+		(select board_manager_seq from board_manager where board_name = '남성 의류'),
+	    #{board_title},
+	    #{board_content},
+	    #{img_path},
+	    #{img_name},
+	    #{img_size},
+	    #{img_type},
+	    #{userCode},
+	    #{objUuid},
+	    #{objName},
+	    #{objSize},
+	    #{objColor},
+	    #{objAmount}
+	);
+    </insert>
+    
 </mapper>

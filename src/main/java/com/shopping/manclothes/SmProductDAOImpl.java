@@ -30,4 +30,9 @@ public class SmProductDAOImpl implements SmProductDAO{
 		return sqlSession.selectOne(Namespace + ".selectProduct", vo);
 	}
 
+	@Override
+	public void insertManBoard(ProductBoardVO productBoardVO) {
+		sqlSession.insert(Namespace + ".insertManBoard", productBoardVO);
+	}
+
 }

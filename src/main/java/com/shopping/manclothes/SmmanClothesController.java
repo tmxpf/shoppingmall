@@ -1,5 +1,8 @@
 package com.shopping.manclothes;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,6 +28,8 @@ import com.shopping.login.SmUserVO;
 @Controller
 public class SmmanClothesController {
 
+	private static final String SAVE_PATH = "D:/eGovFrameDev-3/eGovFrameDev-3.8.0-64bit/mall_img";
+	
 	@Autowired
 	private SmProductService smProductService;
 	
@@ -37,8 +42,39 @@ public class SmmanClothesController {
 	public String insertGallery(@ModelAttribute ProductBoardVO productBoardVO, Model model, HttpServletRequest request, HttpServletResponse response,
 			@RequestParam("upload") MultipartFile file) {
 		
-		UUID uuid = UUID.randomUUID();
-		System.out.println(uuid);
+		try {
+			
+			String originFilename = file.getOriginalFilename();
+			
+			String extName = originFilename.substring(originFilename.lastIndexOf("."), originFilename.length());
+			Long size = file.getSize();
+			
+			String saveFileName = genSaveFileName(extName);
+			
+			System.out.println("originFilename : " + originFilename);
+			System.out.println("extensionName : " + extName);
+			System.out.println("size : " + size);
+			System.out.println("saveFileName : " + saveFileName);
+			
+			writeFile(file, saveFileName, productBoardVO);
+			
+	//		UUID uuid = UUID.randomUUID();
+	//		System.out.println(uuid);
+			
+			smProductService.setManBoard(productBoardVO);
+			
+			
+			
+//			model.addAttribute("fileName", saveFileName);
+//			model.addAttribute("fileName", saveFileName);
+			
+		}
+		catch(IOException e) {
+			// 원래라면 RuntimeException 을 상속받은 예외가 처리되어야 하지만
+			// 편의상 RuntimeException을 던진다.
+			// throw new FileUploadException();	
+			throw new RuntimeException(e);
+		}
 		
 		return "clothes/manClothes";
 	}
@@ -83,5 +119,36 @@ public class SmmanClothesController {
 		ProductVO vo = smProductService.getProduct(productVO);
 		
 		return vo;
+	}
+	
+	public String genSaveFileName(String extName) {
+		String fileName = "";
+		
+		Calendar calendar = Calendar.getInstance();
+		fileName += calendar.get(calendar.YEAR);
+		fileName += calendar.get(Calendar.MONTH);
+		fileName += calendar.get(Calendar.DATE);
+		fileName += calendar.get(Calendar.HOUR);
+		fileName += calendar.get(Calendar.MINUTE);
+		fileName += calendar.get(Calendar.SECOND);
+		fileName += calendar.get(Calendar.MILLISECOND);
+		fileName += extName;
+		
+		return fileName;
+	}
+	
+	public boolean writeFile(MultipartFile file, String saveFileName, ProductBoardVO productBoardVO) throws IOException {
+		boolean result = false;
+
+		byte[] data = file.getBytes();
+		String imgPath = SAVE_PATH + "/" + saveFileName;
+		
+		FileOutputStream fos = new FileOutputStream(imgPath);
+		fos.write(data);
+		fos.close();
+		
+		productBoardVO.setImg_path(imgPath);
+		
+		return result;
 	}
 }

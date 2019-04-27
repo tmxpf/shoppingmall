@@ -27,5 +27,10 @@ public class SmProductServiceImpl implements SmProductService{
 	public ProductVO getProduct(ProductVO vo) {
 		return smProductDAO.selectProduct(vo);
 	}
+
+	@Override
+	public void setManBoard(ProductBoardVO productBoardVO) {
+		smProductDAO.insertManBoard(productBoardVO);
+	}
 	
 }

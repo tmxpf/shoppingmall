@@ -11,4 +11,6 @@ public interface SmProductService {
 	public int getProducListCnt(Map<String, Object> boardInfo);
 	
 	public ProductVO getProduct(ProductVO vo);
+	
+	public void setManBoard(ProductBoardVO productBoardVO);
 }

@@ -11,4 +11,6 @@ public interface SmProductDAO {
 	public int selectProdutListCnt(Map<String, Object> boardInfo);
 	
 	public ProductVO selectProduct(ProductVO vo);
+	
+	public void insertManBoard(ProductBoardVO productBoardVO);
 }
