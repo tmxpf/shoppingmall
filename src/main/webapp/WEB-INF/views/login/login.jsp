@@ -43,8 +43,8 @@
                     </div>
                     <div class="form-group">
                       <div class="custom-control custom-checkbox small">
-                        <input type="checkbox" class="custom-control-input" id="customCheck">
-                        <label class="custom-control-label" for="customCheck">로그인상태 유지</label>
+                          <input type="checkbox" class="custom-control-input" id="customCheck">
+                          <label class="custom-control-label" for="customCheck">아이디 기억하기</label>
                       </div>
                     </div>
                     <a href="#" id="loginButton" class="btn btn-primary btn-user btn-block">
@@ -68,15 +68,19 @@
 
   </div>
 
-  <!-- Bootstrap core JavaScript-->
-  <script src="/resources/vendor/jquery/jquery.min.js"></script>
-  <script src="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Bootstrap core JavaScript-->
+<script src="/resources/vendor/jquery/jquery.min.js"></script>
+<script src="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Core plugin JavaScript-->
-  <script src="/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
+<!-- Core plugin JavaScript-->
+<script src="/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-  <!-- Custom scripts for all pages-->
-  <script src="/resources/js/sb-admin-2.min.js"></script>
+<!-- Custom scripts for all pages-->
+<script src="/resources/js/sb-admin-2.min.js"></script>
+
+<!-- jQuery cookie -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="/resources/js/jquery.cookie.js"></script>
 
 <script>
 
@@ -90,6 +94,11 @@ $(document).ready(function() {
 	$('#loginButton').click(function(event) {
 		loginCheck();
 	});
+	
+	if(typeof $.cookie("login_id") != "undefined") {
+		$('#id').val($.cookie("login_id"));
+		$("#customCheck").prop("checked", true);
+	}
 })
 
 function loginCheck() {
@@ -100,6 +109,13 @@ function loginCheck() {
 		alert('비밀번호를 입력해주세요');
 	}
 	else {
+		if($("#customCheck").is(":checked")) {
+			$.cookie("login_id", $("#id").val(), {expires: 1});
+		}
+		else {
+			$.removeCookie("login_id");
+		}
+		
 		document.getElementById('login').submit();
 	}
 }

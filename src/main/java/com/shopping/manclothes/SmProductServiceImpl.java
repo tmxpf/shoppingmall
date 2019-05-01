@@ -32,5 +32,35 @@ public class SmProductServiceImpl implements SmProductService{
 	public void setManBoard(ProductBoardVO productBoardVO) {
 		smProductDAO.insertManBoard(productBoardVO);
 	}
+
+	@Override
+	public List<ProductVO> getProductListAPI() {
+		return smProductDAO.selectManProductListAPI();
+	}
+
+	@Override
+	public List<ProductBoardVO> getManBoardList() {
+		return smProductDAO.selectManProductList();
+	}
+
+	@Override
+	public ProductVO getProductOneAPI(String name) {
+		return smProductDAO.selectManProductOne(name);
+	}
+
+	@Override
+	public void insertProduct(ProductVO vo) {
+		smProductDAO.insertProductOne(vo);
+	}
+
+	@Override
+	public void updateProduct(ProductVO vo) {
+		smProductDAO.updateProductOne(vo);
+	}
+
+	@Override
+	public void deleteProductOne(String uuid) {
+		smProductDAO.deleteProductOne(uuid);
+	}
 	
 }

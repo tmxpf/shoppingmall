@@ -13,4 +13,16 @@ public interface SmProductService {
 	public ProductVO getProduct(ProductVO vo);
 	
 	public void setManBoard(ProductBoardVO productBoardVO);
+	
+	public List<ProductVO> getProductListAPI();
+	
+	public List<ProductBoardVO> getManBoardList();
+	
+	public ProductVO getProductOneAPI(String name);
+	
+	public void insertProduct(ProductVO vo);
+	
+	public void updateProduct(ProductVO vo);
+	
+	public void deleteProductOne(String uuid);
 }

@@ -13,4 +13,16 @@ public interface SmProductDAO {
 	public ProductVO selectProduct(ProductVO vo);
 	
 	public void insertManBoard(ProductBoardVO productBoardVO);
+	
+	public List<ProductVO> selectManProductListAPI();
+	
+	public List<ProductBoardVO> selectManProductList();
+	
+	public ProductVO selectManProductOne(String name);
+	
+	public void insertProductOne(ProductVO vo);
+	
+	public void updateProductOne(ProductVO vo);
+	
+	public void deleteProductOne(String uuid);
 }

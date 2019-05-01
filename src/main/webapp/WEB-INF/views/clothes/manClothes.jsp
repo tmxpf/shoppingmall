@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -42,64 +43,58 @@
       <h1 class="h3 mb-2 text-gray-800">남성 의류</h1>
       <p class="mb-4">다양한 남성 의류 판매</p>
 
-      <div class="bs-example" id="manClothes">
-	    <div class="row">
-      		<div class="col-xs-6 col-md-3 hovereffect">
-		        <a href="#" class="thumbnail" onClick="modalEvent(event, 1);">
-		          <img src="/mall_img/201932510055216.png" alt="100%x180" data-holder-rendered="true" style="height: 300px; width: 100%; display: block;"/>
-		        </a>
-	      	</div>
-      	</div>
-      	<hr>
-      	<div class="row">
-      		<div class="col-xs-6 col-md-3 hovereffect">
-		        <a href="#" class="thumbnail" onClick="modalEvent(event, 1);">
-		          <img src="/resources/img/clothe_1.jpg" alt="100%x180" data-holder-rendered="true" style="height: 300px; width: 100%; display: block;"/>
-		        </a>
-	      	</div>
-      	</div>
-      </div>
+	  <div class="bs-example" id="manClothes">
+	      <div class="row">
+	          <c:forEach var="list" items="${list}" varStatus="status">
+			      <%-- <c:when test="${status.count} < 4"> --%>
+			          <div class="col-xs-6 col-md-3 hovereffect" style="margin-bottom:13px;">
+				           <a href="#" class="thumbnail" onClick="modalEvent(event, 1);" data-code="${list.objUuid}">
+				               <img src="/mall_img/201932510055216.png" alt="100%x180" data-holder-rendered="true" style="height: 300px; width: 100%; display: block;"/>
+				           </a>
+				      </div>
+			      <%-- </c:when> --%>
+			   </c:forEach>
+	      </div>
+	  </div>
+      
       <!-- <div class="bs-example" id="manClothes">
 	    <div class="row">
-	      <div class="col-xs-6 col-md-3 hovereffect">
+	      <div class="col-xs-6 col-md-3 hovereffect" style="margin-bottom:13px;">
 	        <a href="#" class="thumbnail" onClick="modalEvent(event, 1);">
 	          <img src="/resources/img/clothe_1.jpg" alt="100%x180" data-holder-rendered="true" style="height: 300px; width: 100%; display: block;">
 	        </a>
 	      </div>
-	      <div class="col-xs-6 col-md-3 hovereffect">
+	      <div class="col-xs-6 col-md-3 hovereffect" style="margin-bottom:13px;">
 	        <a href="#" class="thumbnail" onClick="modalEvent(event, 2);">
 	          <img src="/resources/img/clothe_3.jpg" alt="100%x180"  data-holder-rendered="true" style="height: 300px; width: 100%; display: block;">
 	        </a>
 	      </div>
-	      <div class="col-xs-6 col-md-3 hovereffect">
+	      <div class="col-xs-6 col-md-3 hovereffect" style="margin-bottom:13px;">
 	        <a href="#" class="thumbnail" onClick="modalEvent(event, 3);">
 	          <img src="/resources/img/clothe_3.jpg" alt="100%x180" data-holder-rendered="true" style="height: 300px; width: 100%; display: block;">
 	        </a>
 	      </div>
-	      <div class="col-xs-6 col-md-3 hovereffect">
+	      <div class="col-xs-6 col-md-3 hovereffect" style="margin-bottom:13px;">
 	        <a href="#" class="thumbnail" onClick="modalEvent(event, 4);">
 	          <img src="/resources/img/clothe_1.jpg" alt="100%x180" data-holder-rendered="true" style="height: 300px; width: 100%; display: block;">
 	        </a>
 	      </div>
-	    </div>
-	    <hr>
-	    <div class="row">
-	      <div class="col-xs-6 col-md-3 hovereffect">
+	      <div class="col-xs-6 col-md-3 hovereffect" style="margin-bottom:13px;">
 	        <a href="#" class="thumbnail" onClick="modalEvent(event, 5);">
 	          <img src="/resources/img/clothe_1.jpg" alt="100%x180" data-holder-rendered="true" style="height: 300px; width: 100%; display: block;">
 	        </a>
 	      </div>
-	      <div class="col-xs-6 col-md-3 hovereffect">
+	      <div class="col-xs-6 col-md-3 hovereffect" style="margin-bottom:13px;">
 	        <a href="#" class="thumbnail" onClick="modalEvent(event, 6);">
 	          <img src="/resources/img/clothe_3.jpg" alt="100%x180"  data-holder-rendered="true" style="height: 300px; width: 100%; display: block;">
 	        </a>
 	      </div>
-	      <div class="col-xs-6 col-md-3 hovereffect">
+	      <div class="col-xs-6 col-md-3 hovereffect" style="margin-bottom:13px;">
 	        <a href="#" class="thumbnail" onClick="modalEvent(event, 7);">
 	          <img src="/resources/img/clothe_3.jpg" alt="100%x180" data-holder-rendered="true" style="height: 300px; width: 100%; display: block;">
 	        </a>
 	      </div>
-	      <div class="col-xs-6 col-md-3 hovereffect">
+	      <div class="col-xs-6 col-md-3 hovereffect" style="margin-bottom:13px;">
 	        <a href="#" class="thumbnail" onClick="modalEvent(event, 8);">
 	          <img src="/resources/img/clothe_1.jpg" alt="100%x180" data-holder-rendered="true" style="height: 300px; width: 100%; display: block;">
 	        </a>

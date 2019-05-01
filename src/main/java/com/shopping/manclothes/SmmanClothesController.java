@@ -2,6 +2,7 @@ package com.shopping.manclothes;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
@@ -43,6 +44,7 @@ public class SmmanClothesController {
 			@RequestParam("upload") MultipartFile file) {
 		
 		try {
+			//검색어, 보여줄 게시물의 개수
 			
 			String originFilename = file.getOriginalFilename();
 			
@@ -63,10 +65,10 @@ public class SmmanClothesController {
 			
 			smProductService.setManBoard(productBoardVO);
 			
+			List<ProductBoardVO> list = smProductService.getManBoardList();
+			model.addAttribute("list", list);
 			
-			
-//			model.addAttribute("fileName", saveFileName);
-//			model.addAttribute("fileName", saveFileName);
+			/*List<ProductBoardVO> list = smProductService.getManProductList(productBoardVO);*/
 			
 		}
 		catch(IOException e) {

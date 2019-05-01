@@ -3,7 +3,7 @@
 
 <mapper namespace="boardMapper">
 	
-	<resultMap id="Product" type="com.shopping.manclothes.ProductVO">
+	<resultMap id="product" type="com.shopping.manclothes.ProductVO">
 		<result property="objUuid" column="obj_uuid"/>
 		<result property="objName" column="obj_name"/>
 		<result property="objSize" column="obj_size"/>
@@ -13,7 +13,53 @@
 		<result property="userCode" column="usercode"/>
 	</resultMap>
 	
-    <select id="selectProductList" parameterType="map" resultMap="Product">
+	<resultMap id="manProduct" type="com.shopping.manclothes.ProductBoardVO">
+		<result property="board_manager_seq" column="board_manager_seq"/>
+		<result property="board_seq" column="board_seq"/>
+		<result property="board_title" column="board_title"/>
+		<result property="board_content" column="board_content"/>	
+		<result property="img_path" column="img_path"/>
+		<result property="img_name" column="img_name"/>
+		<result property="img_size" column="img_size"/>
+		<result property="img_type" column="img_type"/>
+		<result property="userCode" column="usercode"/>
+		<result property="objUuid" column="obj_uuid"/>
+		<result property="objName" column="obj_name"/>
+		<result property="objSize" column="obj_size"/>
+		<result property="objColor" column="obj_color"/>
+		<result property="objAmount" column="obj_amount"/>
+		<result property="objPrice" column="obj_price"/>
+	</resultMap>
+	
+	<delete id="deleteProductOne" parameterType="string">
+		<![CDATA[
+			delete from product where obj_uuid = #{objUuid}
+		]]>
+	</delete>
+	
+	<update id="updateProductOne" parameterType="com.shopping.manclothes.ProductVO">
+		<![CDATA[
+			update shoppingmall.product set obj_amount = #{objAmount} where obj_uuid = #{objUuid}
+		]]>
+	</update>
+	
+	<insert id="insertProductOne">
+		<![CDATA[
+			insert into product values(#{objUuid}, #{objName}, #{objSize}, #{objColor}, #{objAmount}, #{userCode}, #{objPrice})
+		]]>
+	</insert>
+	
+	<select id="getManProductOne" resultMap="product" parameterType="string">
+    	<![CDATA[
+    		select * from product where obj_name = #{name}
+    	]]>
+    </select>
+	
+	<select id="getProductListAPI" resultMap="product">
+        SELECT * FROM product
+    </select>
+	
+    <select id="selectProductList" parameterType="map" resultMap="product">
         SELECT * FROM product
         <if test="searchOption == 1">
         	WHERE obj_name LIKE '%${search}%'
@@ -40,7 +86,7 @@
     	</if>
     </select>
     
-    <select id="selectProduct" parameterType="com.shopping.manclothes.ProductVO" resultMap="Product">
+    <select id="selectProduct" parameterType="com.shopping.manclothes.ProductVO" resultMap="product">
     <![CDATA[
         SELECT * FROM product WHERE obj_uuid = #{objUuid}
     ]]>
@@ -48,7 +94,7 @@
     
     <insert id="insertManBoard" parameterType="com.shopping.manclothes.ProductBoardVO">
 
-	insert into product_board(board_manager_seq, board_title, board_content, img_path, img_name, img_size, img_type, usercode, obj_uuid, obj_name, obj_size, obj_color, obj_amount) values(
+	insert into product_board(board_manager_seq, board_title, board_content, img_path, img_name, img_size, img_type, usercode, obj_uuid, obj_name, obj_size, obj_color, obj_amount, obj_price) values(
 		(select board_manager_seq from board_manager where board_name = '남성 의류'),
 	    #{board_title},
 	    #{board_content},
@@ -61,8 +107,21 @@
 	    #{objName},
 	    #{objSize},
 	    #{objColor},
-	    #{objAmount}
+	    #{objAmount},
+	    #{objPrice}
 	);
     </insert>
+    
+    <select id="selectManProductList" parameterType="com.shopping.manclothes.ProductBoardVO" resultMap="manProduct">
+    <![CDATA[
+		select * from product_board
+	]]>
+    </select>
+    
+    <select id="getManProductList" resultMap="manProduct">
+    	<![CDATA[
+    		select * from product_board order by board_seq desc limit 8
+    	]]>
+    </select>
     
 </mapper>
