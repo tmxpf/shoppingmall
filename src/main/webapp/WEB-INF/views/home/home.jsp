@@ -9,6 +9,14 @@
 
 <!-- Custom styles for this template-->
 <link href="/resources/css/sb-admin-2.min.css" rel="stylesheet">
+
+<style type="text/css">
+.select{
+ 	text-align:center
+	border:2px solid #000;
+}
+</style>
+
 </head>
 <body id="page-top">
 
@@ -130,6 +138,27 @@
     <i class="fas fa-angle-up"></i>
   </a>
 
+<section id="idPopLayer" class="select" style="width:590px; height:690px; top:150px; left:300px;">
+	<div class="title">
+		<h2>2019 5월 이벤트</h2>		
+	</div>
+	<div class="cont">
+		<a href="#" class="thumbnail">
+       		<img src="/resources/img/clothe_1.jpg" alt="100%x180" data-holder-rendered="true" style="height: 300px; width: 100%; display: block;">
+        	스승의 날 어린이날 이벤트 : 1.설문&출석 이벤트, 2. e학습터 자랑하기, 3.e학습터 소문내기 ##각 이벤트 참여시 다양한 경품을 드려요 ~ 이벤트 참여하기
+        </a>
+	</div>
+	<div class="bar">
+		<ul>
+			<input type="checkbox" id="bwc1_151"/>
+			<label for="bwc1_151">오늘 하루 이 창 열지 않기</label>
+			<span class="close">
+				<a href="#none">X 닫기</a>
+			</span>
+		</ul>	
+	</div>
+</section>
+
 <!-- Bootstrap core JavaScript-->
 <script src="/resources/vendor/jquery/jquery.min.js"></script>
 <script src="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -140,7 +169,18 @@
 <!-- Custom scripts for all pages-->
 <script src="/resources/js/sb-admin-2.min.js"></script>
 
+<!-- jQuery -->
+<script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous">
+</script>
+
+<!-- jQuery UI -->
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <script>
+$('.select').draggable();
 
 document.getElementById("remote").onclick = function() {
 	window.open("/cmm/cmmPlayer.do", "홍보 동영상", "width=1450, height=850, left=100, top=50");
