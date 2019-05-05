@@ -25,4 +25,6 @@ public interface SmProductService {
 	public void updateProduct(ProductVO vo);
 	
 	public void deleteProductOne(String uuid);
+	
+	public ProductBoardVO getManBoardOne(ProductBoardVO productBoardVO);
 }

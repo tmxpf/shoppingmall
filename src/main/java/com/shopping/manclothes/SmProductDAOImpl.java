@@ -65,4 +65,9 @@ public class SmProductDAOImpl implements SmProductDAO{
 		sqlSession.update(Namespace + ".deleteProductOne", uuid);
 	}
 
+	@Override
+	public ProductBoardVO getManBoardOne(ProductBoardVO productBoardVO) {
+		return sqlSession.selectOne(Namespace + ".selectManBoardOne", productBoardVO);
+	}
+
 }

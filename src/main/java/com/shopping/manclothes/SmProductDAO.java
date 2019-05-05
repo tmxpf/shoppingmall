@@ -25,4 +25,6 @@ public interface SmProductDAO {
 	public void updateProductOne(ProductVO vo);
 	
 	public void deleteProductOne(String uuid);
+	
+	public ProductBoardVO getManBoardOne(ProductBoardVO productBoardVO);
 }

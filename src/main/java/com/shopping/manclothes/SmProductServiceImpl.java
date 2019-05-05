@@ -62,5 +62,10 @@ public class SmProductServiceImpl implements SmProductService{
 	public void deleteProductOne(String uuid) {
 		smProductDAO.deleteProductOne(uuid);
 	}
+
+	@Override
+	public ProductBoardVO getManBoardOne(ProductBoardVO productBoardVO) {
+		return smProductDAO.getManBoardOne(productBoardVO);
+	}
 	
 }

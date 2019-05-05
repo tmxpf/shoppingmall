@@ -20,7 +20,6 @@
 <link href="/resources/css/default-page.css" rel="stylesheet">
 </head>
 
-</head>
 <body>
 
   <!-- Page Wrapper -->
@@ -46,62 +45,15 @@
 	  <div class="bs-example" id="manClothes">
 	      <div class="row">
 	          <c:forEach var="list" items="${list}" varStatus="status">
-			      <%-- <c:when test="${status.count} < 4"> --%>
 			          <div class="col-xs-6 col-md-3 hovereffect" style="margin-bottom:13px;">
-				           <a href="#" class="thumbnail" onClick="modalEvent(event, 1);" data-code="${list.objUuid}">
-				               <img src="/mall_img/201932510055216.png" alt="100%x180" data-holder-rendered="true" style="height: 300px; width: 100%; display: block;"/>
+				           <a href="#" class="thumbnail" onClick="modalEvent('${list.board_seq}');">
+				               <img src="${list.img_path}" alt="100%x180" data-holder-rendered="true" style="height: 300px; width: 100%; display: block;"/>
 				           </a>
 				      </div>
-			      <%-- </c:when> --%>
 			   </c:forEach>
 	      </div>
 	  </div>
-      
-      <!-- <div class="bs-example" id="manClothes">
-	    <div class="row">
-	      <div class="col-xs-6 col-md-3 hovereffect" style="margin-bottom:13px;">
-	        <a href="#" class="thumbnail" onClick="modalEvent(event, 1);">
-	          <img src="/resources/img/clothe_1.jpg" alt="100%x180" data-holder-rendered="true" style="height: 300px; width: 100%; display: block;">
-	        </a>
-	      </div>
-	      <div class="col-xs-6 col-md-3 hovereffect" style="margin-bottom:13px;">
-	        <a href="#" class="thumbnail" onClick="modalEvent(event, 2);">
-	          <img src="/resources/img/clothe_3.jpg" alt="100%x180"  data-holder-rendered="true" style="height: 300px; width: 100%; display: block;">
-	        </a>
-	      </div>
-	      <div class="col-xs-6 col-md-3 hovereffect" style="margin-bottom:13px;">
-	        <a href="#" class="thumbnail" onClick="modalEvent(event, 3);">
-	          <img src="/resources/img/clothe_3.jpg" alt="100%x180" data-holder-rendered="true" style="height: 300px; width: 100%; display: block;">
-	        </a>
-	      </div>
-	      <div class="col-xs-6 col-md-3 hovereffect" style="margin-bottom:13px;">
-	        <a href="#" class="thumbnail" onClick="modalEvent(event, 4);">
-	          <img src="/resources/img/clothe_1.jpg" alt="100%x180" data-holder-rendered="true" style="height: 300px; width: 100%; display: block;">
-	        </a>
-	      </div>
-	      <div class="col-xs-6 col-md-3 hovereffect" style="margin-bottom:13px;">
-	        <a href="#" class="thumbnail" onClick="modalEvent(event, 5);">
-	          <img src="/resources/img/clothe_1.jpg" alt="100%x180" data-holder-rendered="true" style="height: 300px; width: 100%; display: block;">
-	        </a>
-	      </div>
-	      <div class="col-xs-6 col-md-3 hovereffect" style="margin-bottom:13px;">
-	        <a href="#" class="thumbnail" onClick="modalEvent(event, 6);">
-	          <img src="/resources/img/clothe_3.jpg" alt="100%x180"  data-holder-rendered="true" style="height: 300px; width: 100%; display: block;">
-	        </a>
-	      </div>
-	      <div class="col-xs-6 col-md-3 hovereffect" style="margin-bottom:13px;">
-	        <a href="#" class="thumbnail" onClick="modalEvent(event, 7);">
-	          <img src="/resources/img/clothe_3.jpg" alt="100%x180" data-holder-rendered="true" style="height: 300px; width: 100%; display: block;">
-	        </a>
-	      </div>
-	      <div class="col-xs-6 col-md-3 hovereffect" style="margin-bottom:13px;">
-	        <a href="#" class="thumbnail" onClick="modalEvent(event, 8);">
-	          <img src="/resources/img/clothe_1.jpg" alt="100%x180" data-holder-rendered="true" style="height: 300px; width: 100%; display: block;">
-	        </a>
-	      </div>
-	    </div>
-  	  </div> -->
-  	  
+
   	  <hr>
   	  <div class="row">
   	  	<div class="pull-right">
@@ -178,10 +130,22 @@
 
 <script>
 
-function modalEvent(event, seq) {
-	var target = event.target;
-	var seq = seq;
-	$('#galleryModal').modal();
+function modalEvent(seq) {
+	
+	$.ajax({
+	    url : "/manclothes/manBoard.do?board_seq=" + seq,
+	    dataType : "json",
+	    type : "post",
+	    success : function(result) {
+	    	$('#galleryModal').modal();
+	    	
+	    	$('#myModalLabel').text(result.board_title);
+	    	$('.modal-body').text(result.board_content);
+	    	
+	    	/* $('#myModalLabel').html('<p>' + result.board_title + '</p>'); */
+	    	
+	    	}
+	});
 }
 
 </script>

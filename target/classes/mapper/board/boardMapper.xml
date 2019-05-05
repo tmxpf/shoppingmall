@@ -120,7 +120,13 @@
     
     <select id="getManProductList" resultMap="manProduct">
     	<![CDATA[
-    		select * from product_board order by board_seq desc limit 8
+    		select * from product_board order by board_seq desc
+    	]]>
+    </select>
+    
+    <select id="selectManBoardOne" parameterType="com.shopping.manclothes.ProductBoardVO"  resultMap="manProduct">
+    	<![CDATA[
+    		select * from product_board where board_seq = #{board_seq}
     	]]>
     </select>
     

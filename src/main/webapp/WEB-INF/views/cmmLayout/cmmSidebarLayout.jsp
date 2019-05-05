@@ -45,7 +45,7 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Custom Components:</h6>
             <a href="#" class="collapse-item" onClick="manClothes(event);">남성 의류</a>
-            <a class="collapse-item" href="cards.html">Cards</a>
+            <a class="collapse-item" href="/calendar/schedule.do">일정관리</a>
           </div>
         </div>
       </li>

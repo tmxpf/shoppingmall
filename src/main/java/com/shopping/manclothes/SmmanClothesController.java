@@ -65,11 +65,6 @@ public class SmmanClothesController {
 			
 			smProductService.setManBoard(productBoardVO);
 			
-			List<ProductBoardVO> list = smProductService.getManBoardList();
-			model.addAttribute("list", list);
-			
-			/*List<ProductBoardVO> list = smProductService.getManProductList(productBoardVO);*/
-			
 		}
 		catch(IOException e) {
 			// 원래라면 RuntimeException 을 상속받은 예외가 처리되어야 하지만
@@ -77,8 +72,8 @@ public class SmmanClothesController {
 			// throw new FileUploadException();	
 			throw new RuntimeException(e);
 		}
-		
-		return "clothes/manClothes";
+
+		return "redirect:/clothes/manClothes.do";
 	}
 	
 	@RequestMapping(value="/manclothes/objectRegister.do")
@@ -123,6 +118,15 @@ public class SmmanClothesController {
 		return vo;
 	}
 	
+	@ResponseBody
+	@RequestMapping(value="/manclothes/manBoard.do")
+	public ProductBoardVO manBoard(@ModelAttribute ProductBoardVO productBoardVO, Model model, HttpServletRequest request, HttpServletResponse response) {
+		
+		ProductBoardVO vo = smProductService.getManBoardOne(productBoardVO);
+		
+		return vo;
+	}
+	
 	public String genSaveFileName(String extName) {
 		String fileName = "";
 		
@@ -144,12 +148,13 @@ public class SmmanClothesController {
 
 		byte[] data = file.getBytes();
 		String imgPath = SAVE_PATH + "/" + saveFileName;
+		String[] dbImgPath = SAVE_PATH.split("/");
 		
 		FileOutputStream fos = new FileOutputStream(imgPath);
 		fos.write(data);
 		fos.close();
 		
-		productBoardVO.setImg_path(imgPath);
+		productBoardVO.setImg_path("/" + dbImgPath[3] + "/" + saveFileName);
 		
 		return result;
 	}
