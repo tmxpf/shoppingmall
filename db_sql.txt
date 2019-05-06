@@ -35,4 +35,17 @@ create table shoppingmall.user(
     rrn   varchar(50) NOT NULL
 );
 
-
+create table calendar(
+	schdul_id varchar(50) not null primary key comment '일정ID',
+    schdul_title varchar(100) comment '일정 제목',
+    schdul_content varchar(500) comment '일정 내용',
+    schdul_place varchar(300) comment '일정 장소',
+    schdul_registant_name varchar(100) comment '등록자 이름',
+    schdul_alarm varchar(10) comment '알람 설정',
+    schdul_sel varchar(10) comment '일정내용 구분',
+    schdul_date varchar(100) not null comment '일정 날짜',
+    schdul_bgnDeHH varchar(100) comment '일정 시작 일자(시간)',
+    schdul_bgnDeMM varchar(100) comment '일정 시작 일자(분)',
+    schdul_endDeHH varchar(100) comment '일정 종료 일자(시간)',
+    schdul_endDeMM varchar(100) comment '일정 종료 일자(분)'
+);

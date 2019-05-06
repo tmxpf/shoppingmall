@@ -3,13 +3,6 @@
 
 <configuration>
 
-<typeAliases>
-     <typeAlias alias="SmUserVO" type="com.shopping.login.SmUserVO" />
-</typeAliases>
 
-<mappers>
-  <mapper resource="mapper/login/loginMapper.xml"/>
-</mappers>
 
-<typeAliases></typeAliases>
 </configuration> -->

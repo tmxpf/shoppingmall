@@ -63,6 +63,16 @@ table.calendar td{
 
 		<div class="cal">
 		
+			<div class="cal_top">
+			    <a href="#" id="movePrevYear"><span id="prevYear" class="cal_tit">&lt;</span></a>
+			    	<span id="cal_top_year"></span>
+			    <a href="#" id="moveNextYear"><span id="nextYear" class="cal_tit">&gt;</span></a>
+			    
+			    <a href="#" id="movePrevMonth"><span id="prevMonth" class="cal_tit">&lt;</span></a>
+			    	<span id="cal_top_month"></span>
+			    <a href="#" id="moveNextMonth"><span id="nextMonth" class="cal_tit">&gt;</span></a>
+			</div>
+		
 			<table class="calendar">
 				<caption class="bind"></caption>
 				<colgroup>
@@ -84,25 +94,6 @@ table.calendar td{
 					<td style="text-align:center;">토</td>
 				</tr>
 			</table>
-			
-			<!-- <div class="cal_top">
-			   <a href="#" id="movePrevMonth"><span id="prevMonth" class="cal_tit">&lt;</span></a>
-			    <span id="cal_top_year"></span>
-			    <span id="cal_top_month"></span>
-			    <a href="#" id="moveNextMonth"><span id="nextMonth" class="cal_tit">&gt;</span></a>
-			</div>
-			<div id="cal_tab" class="cal">
-				   
-			</div>
-				
-			<div class="cal_top">
-		        <a href="#" id="movePrevMonth"><span id="prevMonth" class="cal_tit">&lt;</span></a>
-		        <span id="cal_top_year"></span>
-		        <span id="cal_top_month"></span>
-		        <a href="#" id="moveNextMonth"><span id="nextMonth" class="cal_tit">&gt;</span></a>
-		    </div>
-		    
-		    <div id="cal_tab" class="cal"> -->
 		    
 		    </div>
 
@@ -144,7 +135,6 @@ table.calendar td{
 	
 	var startDay = null;	//현재 달의 처음 날
 	var endDay = null;		//현재 달의 마지막 날
-	
 	var sumDay = 0;		//날짜 전체 빈칸
 	
 	var tdDay = null;
@@ -166,13 +156,16 @@ table.calendar td{
 		
 		startDay = firstDay.getDay();		//현재 달의 처음 날
 		endDay = lastDay.getDay();		//현재 달의 마지막 날
+		
+		$("#cal_top_year").text(year + "년");	//현재 달력의 년도
+        $("#cal_top_month").text(month + "월");	//현재 달력의 달
 	}
 	
 	function drawCalendar() {
 		var dateRow = 0; 	//달력 row
 		var setTableHTML = "";
 		
-		sumDay += lastDay.getDate() - firstDay.getDate() + 1;	//천제 날짜
+		sumDay += lastDay.getDate();	//천제 날짜
 		sumDay += startDay;		//첫날
 		sumDay += 6 - endDay;		//마지막 날
 		
@@ -194,17 +187,22 @@ table.calendar td{
 	}
 	
 	function drawDays() {
-		var dayCount = 0;
+		var dayCount = 0;		//날짜 증가
+		var dayHTML = "";		//날짜 태그
+		var choiceDate = "";		//선택날짜
 		
 		tdDay = $('td div.cal-day');
 		tdSche = $('td div.cal-schedule');
 		
 		for(var i = startDay; i < startDay + lastDay.getDate(); i++){
-           /* tdDay.eq(i).text(++dayCount); */
-           var dayHTML = "";
-           
-           dayHTML += '<a href="#none">' + ++dayCount + '</a>';
-           
+			dayCount++;
+			
+			choiceDate = "";
+			choiceDate += year.toString() + "-";
+			choiceDate += month.toString().length == 1 ? "0" + month.toString()  + "-" : month.toString()  + "-";
+			choiceDate += dayCount.toString().length == 1 ? "0" + dayCount.toString() : dayCount.toString();
+			
+           dayHTML = '<a href="/calendar/registerSchedule.do?schdul_date=' + choiceDate + '">' + dayCount + '</a>';
 		   tdDay.eq(i).html(dayHTML);
         }
 		
@@ -217,108 +215,58 @@ table.calendar td{
         }
 	}
 	
-</script>
-
-<!-- <script type="text/javascript">
-    
-    var today = null;
-    var year = null;
-    var month = null;
-    var firstDay = null;
-    var lastDay = null;
-    var $tdDay = null;
-    var $tdSche = null;
- 
-    $(document).ready(function() {
-        drawCalendar();
-        initDate();
-        drawDays();
-        $("#movePrevMonth").on("click", function(){movePrevMonth();});
-        $("#moveNextMonth").on("click", function(){moveNextMonth();});
-    });
-    
-    //calendar 그리기
-    function drawCalendar(){
-        var setTableHTML = "";
-        setTableHTML+='<table class="calendar">';
-        setTableHTML+='<tr><th>SUN</th><th>MON</th><th>TUE</th><th>WED</th><th>THU</th><th>FRI</th><th>SAT</th></tr>';
-        for(var i=0;i<6;i++){
-            setTableHTML+='<tr height="100">';
-            for(var j=0;j<7;j++){
-                setTableHTML+='<td style="text-overflow:ellipsis;overflow:hidden;white-space:nowrap">';
-                setTableHTML+='    <div class="cal-day"></div>';
-                setTableHTML+='    <div class="cal-schedule"></div>';
-                setTableHTML+='</td>';
-            }
-            setTableHTML+='</tr>';
-        }
-        setTableHTML+='</table>';
-        $("#cal_tab").html(setTableHTML);
-    }
- 
-    //날짜 초기화
-    function initDate(){
-        $tdDay = $("td div.cal-day")
-        $tdSche = $("td div.cal-schedule")
-        dayCount = 0;
-        today = new Date();
-        year = today.getFullYear();
-        month = today.getMonth()+1;
-        firstDay = new Date(year,month-1,1);
-        lastDay = new Date(year,month,0);
-    }
-    
-    //calendar 날짜표시
-    function drawDays(){
-        $("#cal_top_year").text(year);
-        $("#cal_top_month").text(month);
-        for(var i=firstDay.getDay();i<firstDay.getDay()+lastDay.getDate();i++){
-            $tdDay.eq(i).text(++dayCount);
-        }
-        for(var i=0;i<42;i+=7){
-            $tdDay.eq(i).css("color","red");
-        }
-        for(var i=6;i<42;i+=7){
-            $tdDay.eq(i).css("color","blue");
-        }
-    }
- 
-    //calendar 월 이동
-    function movePrevMonth(){
-        month--;
-        if(month<=0){
+	$("#movePrevYear").on("click", function() {
+		year--;
+		
+		getNewInfo();
+	});
+	
+	$("#moveNextYear").on("click", function() {
+		year++;
+		
+		getNewInfo();
+	});
+	
+	$("#movePrevMonth").on("click", function() {
+		month--;
+		
+        if(month <= 0){
             month=12;
             year--;
         }
-        if(month<10){
-            month=String("0"+month);
-        }
+        
         getNewInfo();
-        }
-    
-    function moveNextMonth(){
-        month++;
-        if(month>12){
+	});
+	
+	$("#moveNextMonth").on("click", function() {
+		month++;
+		
+        if(month > 12){
             month=1;
             year++;
         }
-        if(month<10){
-            month=String("0"+month);
-        }
+        
         getNewInfo();
-    }
-
-    
-    function getNewInfo(){
-        for(var i=0;i<42;i++){
-            $tdDay.eq(i).text("");
-        }
-        dayCount=0;
+	});
+	
+	function getNewInfo() {
+		$('.day').remove();
+		
+		sumDay = 0;
         firstDay = new Date(year,month-1,1);
         lastDay = new Date(year,month,0);
-        drawDays();
-    }
-</script> -->
+        
+        startDay = firstDay.getDay();		//현재 달의 처음 날
+		endDay = lastDay.getDay();		//현재 달의 마지막 날
+		
+		$("#cal_top_year").text(year + "년");	//현재 달력의 년도
+        $("#cal_top_month").text(month + "월");	//현재 달력의 달
+        
+        drawCalendar();
+		drawDays();
+	}
+	
+</script>
 
 </body>
 </html>
