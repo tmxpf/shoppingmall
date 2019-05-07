@@ -189,12 +189,16 @@ table.calendar td{
 	function drawDays() {
 		var dayCount = 0;		//날짜 증가
 		var dayHTML = "";		//날짜 태그
+		var schedulHTML = "";	//스케줄 태그
 		var choiceDate = "";		//선택날짜
+		var list = new Array(); //스케줄 리스트 가져오기
+		
+		list = getScheduleList();
 		
 		tdDay = $('td div.cal-day');
 		tdSche = $('td div.cal-schedule');
 		
-		for(var i = startDay; i < startDay + lastDay.getDate(); i++){
+		for(var i = startDay; i < startDay + lastDay.getDate(); i++) {
 			dayCount++;
 			
 			choiceDate = "";
@@ -203,7 +207,15 @@ table.calendar td{
 			choiceDate += dayCount.toString().length == 1 ? "0" + dayCount.toString() : dayCount.toString();
 			
            dayHTML = '<a href="/calendar/registerSchedule.do?schdul_date=' + choiceDate + '">' + dayCount + '</a>';
-		   tdDay.eq(i).html(dayHTML);
+           tdDay.eq(i).html(dayHTML);
+           
+           for(var j = 0; j < list.length; j++) {
+        	   if(list[j].schdul_date == choiceDate ) {
+            	   schedulHTML = '<a href="/calendar/showSchedule.do?schdul_id=' + list[j].schdul_id + '"><font style="font-size: 10px">' + list[j].schdul_title + '</font></a>';
+            	   tdSche.eq(i).html(schedulHTML);
+               }
+           }
+           
         }
 		
         for(var i=0; i < sumDay; i += 7){
@@ -264,6 +276,26 @@ table.calendar td{
         
         drawCalendar();
 		drawDays();
+	}
+	
+	function getScheduleList() {
+		var list = "";
+		var date = "";
+		
+		date += year.toString() + "-";
+		date += month.toString().length == 1 ? "0" + month.toString() : month.toString();
+		
+		$.ajax({
+			url : "/calendar/getScheduleList.do",
+			dataType : "json"	,
+			async: false,
+			data : {"currentDate" : date},
+			success : function(result) {
+				list = result;
+			}
+		});
+		
+		return list;
 	}
 	
 </script>

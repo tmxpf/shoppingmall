@@ -1,5 +1,8 @@
 package com.shopping.calendar;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class CalendarController {
@@ -19,7 +23,7 @@ public class CalendarController {
 	CalendarService calendarService;
 	
 	@RequestMapping(value="/calendar/schedule.do")
-	public String schedule(@ModelAttribute("scheduleVO") ScheduleVO scheduleVO, Model model, HttpServletRequest request, HttpServletResponse response, 
+	public String schedule(@ModelAttribute("scheduleVO") CalendarVO calendarVO, Model model, HttpServletRequest request, HttpServletResponse response, 
 			HttpSession session) {
 		
 		return "calendar/schedule";
@@ -44,5 +48,23 @@ public class CalendarController {
 		calendarService.insertSchedule(scheduleVO);
 		
 		return "redirect:/calendar/schedule.do";
+	}
+	
+	@RequestMapping(value="/calendar/showSchedule.do")
+	public String showSchedule(@ModelAttribute("scheduleVO") ScheduleVO scheduleVO, Model model, HttpServletRequest request, HttpServletResponse response) {
+		
+		
+		
+		return "";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/calendar/getScheduleList.do")
+	public List<ScheduleVO> getScheduleList(@ModelAttribute("scheduleVO") CalendarVO calendarVO, Model model, HttpServletRequest request, HttpServletResponse response, 
+			HttpSession session) {
+		
+		List<ScheduleVO> resultList = calendarService.selectSchedule(calendarVO);
+		
+		return resultList;
 	}
 }

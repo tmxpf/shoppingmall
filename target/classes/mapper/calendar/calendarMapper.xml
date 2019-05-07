@@ -21,4 +21,10 @@
 	 ]]>
 </insert>
 
+<select id="selectSchedule" parameterType="com.shopping.calendar.CalendarVO" resultType="com.shopping.calendar.ScheduleVO">
+<![CDATA[
+	select * from calendar where schdul_date like '${currentDate}%';
+]]>
+</select>
+
 </mapper>
