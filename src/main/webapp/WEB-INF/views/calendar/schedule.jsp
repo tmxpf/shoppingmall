@@ -211,8 +211,9 @@ table.calendar td{
            
            for(var j = 0; j < list.length; j++) {
         	   if(list[j].schdul_date == choiceDate ) {
-            	   schedulHTML = '<a href="/calendar/showSchedule.do?schdul_id=' + list[j].schdul_id + '"><font style="font-size: 10px">' + list[j].schdul_title + '</font></a>';
-            	   tdSche.eq(i).html(schedulHTML);
+            	   schedulHTML = '<p><a href="/calendar/showSchedule.do?schdul_id=' + list[j].schdul_id + '"><font style="font-size: 10px">' + list[j].schdul_title + '</font></a></p>';
+            	   /* tdSche.eq(i).html(schedulHTML); */
+            	   tdSche.eq(i).append(schedulHTML);
                }
            }
            
