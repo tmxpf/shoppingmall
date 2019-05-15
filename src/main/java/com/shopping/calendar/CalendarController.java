@@ -1,9 +1,6 @@
 package com.shopping.calendar;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.List;
-import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -40,11 +37,12 @@ public class CalendarController {
 	}
 	
 	@RequestMapping(value="/calendar/insertSchedule.do")
-	public String insertSchedule(@ModelAttribute("scheduleVO") ScheduleVO scheduleVO, Model model, HttpServletRequest request, HttpServletResponse response) {
+	public String insertSchedule(@ModelAttribute("scheduleVO") ScheduleVO scheduleVO, Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		
-		UUID uuid = UUID.randomUUID();
-		
-		scheduleVO.setSchdul_id(uuid.toString());
+//		UUID uuid = UUID.randomUUID();
+//		
+//		scheduleVO.setSchdul_id(uuid.toString());
+		scheduleVO.setUsercode(Integer.parseInt((String) session.getAttribute("id")));
 		calendarService.insertSchedule(scheduleVO);
 		
 		return "redirect:/calendar/schedule.do";
@@ -67,4 +65,5 @@ public class CalendarController {
 		
 		return resultList;
 	}
+
 }

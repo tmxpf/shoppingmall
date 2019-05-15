@@ -10,7 +10,7 @@ public class ScheduleVO implements Serializable{
 	private static final long serialVersionUID = 6650006149186767532L;
 	
 //	일정ID
-	private String schdul_id;
+	private int usercode;
 //	일정 제목
 	private String	schdul_title;
 //	일정 내용
@@ -39,14 +39,10 @@ public class ScheduleVO implements Serializable{
 	private String schdul_endDeHH;
 //	일정 종료 일자(분)
 	private String schdul_endDeMM;
+//	스케줄 시간체크
+	private String schdul_chk;
 	
 	
-	public String getSchdul_id() {
-		return schdul_id;
-	}
-	public void setSchdul_id(String schdul_id) {
-		this.schdul_id = schdul_id;
-	}
 	public String getSchdul_title() {
 		return schdul_title;
 	}
@@ -124,6 +120,18 @@ public class ScheduleVO implements Serializable{
 	}
 	public void setSchdul_endDeMM(String schdul_endDeMM) {
 		this.schdul_endDeMM = schdul_endDeMM;
+	}
+	public String getSchdul_chk() {
+		return schdul_chk;
+	}
+	public void setSchdul_chk(String schdul_chk) {
+		this.schdul_chk = schdul_chk;
+	}
+	public int getUsercode() {
+		return usercode;
+	}
+	public void setUsercode(int usercode) {
+		this.usercode = usercode;
 	}
 	
 }

@@ -17,7 +17,8 @@
 		#{schdul_bgnDeHH}, 
 		#{schdul_bgnDeMM}, 
 		#{schdul_endDeHH}, 
-		#{schdul_endDeMM});
+		#{schdul_endDeMM},
+		"N");
 	 ]]>
 </insert>
 
@@ -26,5 +27,23 @@
 	select * from calendar where schdul_date like '${currentDate}%';
 ]]>
 </select>
+
+<select id="selectScheduleOne" parameterType="map" resultType="com.shopping.calendar.ScheduleVO">
+	select * from calendar where schdul_registant_name = #{userId} 
+	and schdul_date = #{date}
+	and schdul_bgnDeHH = #{timeHH} 
+	and schdul_bgnDeMM = #{timeMM} 
+	and schdul_alarm = "Y" 
+	and schdul_chk = "N"
+</select>
+
+<update id="updateSchdulChk" parameterType="com.shopping.calendar.ScheduleVO">
+	update calendar set schdul_chk = "Y" 
+	where schdul_registant_name = #{schdul_registant_name} 
+	and schdul_date = #{schdul_date} 
+	and schdul_bgnDeHH = #{schdul_bgnDeHH} 
+	and schdul_bgnDeMM = #{schdul_bgnDeMM} 
+	and schdul_chk = "N"
+</update>
 
 </mapper>
